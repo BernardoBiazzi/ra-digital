@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "ra-digital:build:production",
+            "firebaseProject": "carteirinhadeestudante-6df1b",
+            "firebaseHostingSite": "carteirinhadeestudante-6df1b"
+          }
         }
       }
     }

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "carteirinhadeestudante-6df1b": {
+      "hosting": {
+        "ra-digital": [
+          "carteirinhadeestudante-6df1b"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "carteirinhadeestudante-6df1b"
+  }
+}
