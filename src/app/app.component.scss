@@ -1,6 +1,7 @@
 #ra-digital {
   width: 100vw;
   height: 100dvh;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: #dfdfdf;
 }

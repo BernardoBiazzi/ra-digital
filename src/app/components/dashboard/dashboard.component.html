@@ -1,6 +1,7 @@
 <header>
-  <img [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Hamburger_icon_white.svg/1024px-Hamburger_icon_white.svg.png'" alt="">
+  <img id="menu" [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Hamburger_icon_white.svg/1024px-Hamburger_icon_white.svg.png'" alt="">
   <p>Carteirinha</p>
+  <img id="logout" (click)="authService.signOut()" [src]="'https://static-00.iconduck.com/assets.00/logout-icon-512x512-2x08s84n.png'" alt="">
 </header>
 
 <div class="carteirinha">
