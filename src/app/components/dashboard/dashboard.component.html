@@ -1,1 +1,51 @@
-<p>dashboard works!</p>
+<header>
+  <img [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Hamburger_icon_white.svg/1024px-Hamburger_icon_white.svg.png'" alt="">
+  <p>Carteirinha</p>
+</header>
+
+<div class="carteirinha">
+
+  <div class="header-moldura">
+    <img [src]="'https://www.eduwonka.com/assets/images/google-white2.png'" alt="">
+  </div>
+
+  <div class="dados">
+    <div class="profile">
+      <img [src]="this.user.photoURL" alt="">
+    </div>
+    <div class="user-info">
+      <p id="name">{{this.user.displayName}}</p>
+      <p id="email">{{this.user.email}}</p>
+      <p id="cpf">484.105.378-69</p>
+    </div>
+  </div>
+
+  <div class="curso">
+    <p>Curso:</p>
+    <p id="curso">ENGENHARIA DE COMPUTAÇÃO</p>
+  </div>
+
+  <div class="detalhes-curso">
+    <div class="item">
+      <p>Nível do curso:</p>
+      <p id="nivel">GRADUAÇÃO</p>
+    </div>
+    <div class="item">
+      <p>Unidade:</p>
+      <p id="unidade">ENSINO A DISTÂNCIA</p>
+    </div>
+  </div>
+
+  <div class="codigo-barras">
+    <img [src]="'https://www.pngall.com/wp-content/uploads/2/Barcode-PNG-Images.png'" alt="">
+  </div>
+
+  <div class="validade">
+    <p>Válido até 31/12/2023</p>
+  </div>
+
+  <div class="bottom-moldura">
+    <img [src]="'https://img.freepik.com/premium-photo/abstract-digital-background-network-connection-structure-big-data-futuristic-abstract-wave-3d-rendering_697329-291.jpg'" alt="">
+  </div>
+
+</div>
