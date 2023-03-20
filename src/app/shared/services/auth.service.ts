@@ -11,6 +11,7 @@ export interface User {
   photoURL: string;
   emailVerified: boolean;
 }
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
@@ -97,6 +98,7 @@ export class AuthService {
 
   // Sign in with Google
   googleAuth() {
+    // Necessário habilitar no Firebase autenticação com Google.
     return this.authLogin(new auth.GoogleAuthProvider()).then((res: any) => {
       this.router.navigate(['dashboard']);
     });
