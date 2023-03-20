@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService, User } from '../../shared/services/auth.service';
 
 @Component({
@@ -10,11 +10,12 @@ export class DashboardComponent implements OnInit {
 
   public user!: User;
 
-  constructor(public authService: AuthService,
-    private changeDetector: ChangeDetectorRef) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
     this.user = this.authService.userData;
+    if (!this.user.cpf) this.user.cpf = '000.000.000-00';
+    if (!this.user.curso) this.user.curso = 'CLIQUE E DIGITE O NOME';
   }
 
   debounce<T extends (...args: any[]) => any>(func: T, delay: number) {
@@ -32,19 +33,16 @@ export class DashboardComponent implements OnInit {
     event.target.value = maskedValue;
 
     if (maskedValue.length == 14) {
-      this.updateCpfOnDatabase(maskedValue);
+      this.user.cpf = maskedValue;
+      this.authService.updateUserData(this.user)
     }
   }
 
-  updateCpfOnDatabase = this.debounce((cpf: string) => {
-    this.user.cpf = cpf;
-    this.authService.updateUserData(this.user)
-  }, 500);
-
   keyUpCurso = this.debounce((curso: string) => {
     this.user.curso = curso.toUpperCase();
+    if (this.user.curso.length <= 1) return;
     this.authService.updateUserData(this.user)
-  }, 500);
+  }, 1000);
 
   maskCpf(cpf: string): string {
     // Remove all non-digit characters from the input string
