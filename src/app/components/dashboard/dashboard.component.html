@@ -17,13 +17,13 @@
     <div class="user-info">
       <p id="name">{{this.user.displayName}}</p>
       <p id="email">{{this.user.email}}</p>
-      <p id="cpf">484.105.378-69</p>
+      <input (keyup)="keyUpCpf($event)" type="text" class="formControl" [value]="this.user.cpf || '000.000.000-00'" #cpf>
     </div>
   </div>
 
   <div class="curso">
     <p>Curso:</p>
-    <p id="curso">ENGENHARIA DE COMPUTAÇÃO</p>
+    <input (keyup)="keyUpCurso(curso.value)" type="text" class="formControl" [value]="this.user.curso || 'CLIQUE E DIGITE O NOME'" #curso>
   </div>
 
   <div class="detalhes-curso">

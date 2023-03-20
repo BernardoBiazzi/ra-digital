@@ -161,3 +161,19 @@ header {
     }
   }
 }
+
+input {
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 0;
+  border: none !important;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: black;
+  }
+}

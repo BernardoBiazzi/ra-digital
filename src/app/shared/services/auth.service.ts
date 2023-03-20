@@ -3,9 +3,12 @@ import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 
 export interface User {
   uid: string;
+  cpf?: string;
+  curso?: string;
   email: string;
   displayName: string;
   photoURL: string;
@@ -27,11 +30,7 @@ export class AuthService {
     /* Saving user data in localstorage when
     logged in and setting up null when logged out */
     this.angularFireAuth.authState.subscribe((user) => {
-      if (user) {
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user')!);
-      } else {
+      if (!user)  {
         localStorage.setItem('user', 'null');
         JSON.parse(localStorage.getItem('user')!);
       }
@@ -43,11 +42,8 @@ export class AuthService {
     return this.angularFireAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.setUserData(result.user);
-        this.angularFireAuth.authState.subscribe((user) => {
-          if (user) {
-            this.router.navigate(['dashboard']);
-          }
+        this.setUserData(result.user).then(() => {
+          this.router.navigate(['dashboard']);
         });
       })
       .catch((error) => {
@@ -121,18 +117,57 @@ export class AuthService {
   sign up with username/password and sign in with social auth
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
   setUserData(user: any) {
-    const userRef: AngularFirestoreDocument<any> = this.angularFirestore.doc(
-      `users/${user.uid}`
-    );
+    const userRef: AngularFirestoreDocument<any> = this.angularFirestore.doc(`users/${user.uid}`);
+
     const userData: User = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified,
+      emailVerified: user.emailVerified
     };
-    return userRef.set(userData, {
-      merge: true,
+
+    return new Promise<User>((resolve, reject) => {
+      userRef.set(userData, { merge: true }).then(() => {
+        userRef.get().subscribe({
+          next: (response) => {
+            this.userData = response.data();
+            localStorage.setItem('user', JSON.stringify(this.userData));
+            JSON.parse(localStorage.getItem('user')!);
+            resolve(this.userData);
+          },
+          error: (error) => {
+            window.alert(error);
+            reject(error);
+          }
+        });
+      }).catch((error) => {
+        window.alert(error);
+        reject(error);
+      });
+    });
+  }
+
+  updateUserData(user: User) {
+    const userRef: AngularFirestoreDocument<any> = this.angularFirestore.doc(`users/${user.uid}`);
+    return new Promise<User>((resolve, reject) => {
+      userRef.set(user, { merge: true }).then(() => {
+        userRef.get().subscribe({
+          next: (response) => {
+            this.userData = response.data();
+            localStorage.setItem('user', JSON.stringify(this.userData));
+            JSON.parse(localStorage.getItem('user')!);
+            resolve(this.userData);
+          },
+          error: (error) => {
+            window.alert(error);
+            reject(error);
+          }
+        });
+      }).catch((error) => {
+        window.alert(error);
+        reject(error);
+      });
     });
   }
 
