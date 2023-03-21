@@ -15,15 +15,15 @@
       <img [src]="this.user.photoURL" alt="">
     </div>
     <div class="user-info">
-      <p id="name">{{this.user.displayName}}</p>
+      <input id="name" (keyup)="keyUpName($event)" type="text" class="formControl" [value]="this.user.displayName" #displayName>
       <p id="email">{{this.user.email}}</p>
-      <input (keyup)="keyUpCpf($event)" type="text" class="formControl" [value]="this.user.cpf" #cpf>
+      <input id="cpf" (keyup)="keyUpCpf($event)" type="text" class="formControl" [value]="this.user.cpf" #cpf>
     </div>
   </div>
 
   <div class="curso">
     <p>Curso:</p>
-    <input (keyup)="keyUpCurso(curso.value)" type="text" class="formControl" [value]="this.user.curso" #curso>
+    <input id="curso" (keyup)="keyUpCurso($event)" type="text" class="formControl" [value]="this.user.curso" #curso>
   </div>
 
   <div class="detalhes-curso">

@@ -34,7 +34,11 @@
 
     .profile {
       img {
+        width: 96px;
+        height: 96px;
         border-radius: 10px;
+        background-color: #dfdfdf;
+        box-shadow: inset 2px 2px 4px #0000006b;
       }
     }
 
