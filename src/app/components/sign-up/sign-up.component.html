@@ -1,7 +1,12 @@
+<header>
+  <img id="menu" [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Hamburger_icon_white.svg/1024px-Hamburger_icon_white.svg.png'" alt="">
+  <p>Autenticação</p>
+</header>
+
 <div class="displayTable">
   <div class="displayTableCell">
     <div class="authBlock">
-      <h3>Sign Up</h3>
+      <h3>Cadastre-se</h3>
       <div class="formGroup">
         <input
           type="email"
@@ -22,11 +27,11 @@
         <input
           type="button"
           class="btn btnPrimary"
-          value="Sign Up"
+          value="Continuar"
           (click)="authService.signUp(userEmail.value, userPwd.value)"/>
       </div>
       <div class="formGroup">
-        <span class="or"><span class="orInner">Or</span></span>
+        <span class="or"><span class="orInner">Ou</span></span>
       </div>
       <!-- Continue with Google -->
       <div class="formGroup">
@@ -34,14 +39,14 @@
           type="button"
           class="btn googleBtn"
           (click)="authService.googleAuth()">
-          <i class="fab fa-google-plus-g"></i>
-          Continue with Google
+          <img [src]="'https://cdn-icons-png.flaticon.com/512/2991/2991148.png'" alt="">
+          Cadastre-se com o Google
         </button>
       </div>
     </div>
     <div class="redirectToLogin">
-      <span>Already have an account?
-        <span class="redirect" routerLink="/sign-in">Log In</span>
+      <span>Já possui uma conta?
+        <span class="redirect" routerLink="/sign-in">Efetue o login</span>
       </span>
     </div>
   </div>

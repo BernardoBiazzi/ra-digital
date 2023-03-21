@@ -1,33 +1,38 @@
+<header>
+  <img id="menu" [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Hamburger_icon_white.svg/1024px-Hamburger_icon_white.svg.png'" alt="">
+  <p>Autenticação</p>
+</header>
+
 <div class="displayTable">
   <div class="displayTableCell">
     <div class="authBlock">
-      <h3>Sign In</h3>
+      <h3>Efetuar login</h3>
       <div class="formGroup">
-        <input type="text" class="formControl" placeholder="Username" #userName required>
+        <input type="text" class="formControl" placeholder="Email" #userName required>
       </div>
       <div class="formGroup">
-        <input type="password" class="formControl" placeholder="Password" #userPassword required>
+        <input type="password" class="formControl" placeholder="Senha" #userPassword required>
       </div>
       <!-- Calling SignIn Api from AuthService -->
       <div class="formGroup">
-        <input type="button" class="btn btnPrimary" value="Log in" (click)="authService.signIn(userName.value, userPassword.value)">
+        <input type="button" class="btn btnPrimary" value="Continuar" (click)="authService.signIn(userName.value, userPassword.value)">
       </div>
       <div class="formGroup">
-        <span class="or"><span class="orInner">Or</span></span>
+        <span class="or"><span class="orInner">Ou</span></span>
       </div>
       <!-- Calling GoogleAuth Api from AuthService -->
       <div class="formGroup">
         <button type="button" class="btn googleBtn" (click)="authService.googleAuth()">
-          <i class="fab fa-google-plus-g"></i>
-          Log in with Google
+          <img [src]="'https://cdn-icons-png.flaticon.com/512/2991/2991148.png'" alt="">
+          Entrar com o Google
         </button>
       </div>
       <div class="forgotPassword">
-        <span routerLink="/forgot-password">Forgot Password?</span>
+        <span routerLink="/forgot-password">Esqueceu sua senha?</span>
       </div>
     </div>
     <div class="redirectToLogin">
-      <span>Don't have an account?<span class="redirect" routerLink="/register-user"> Sign Up</span></span>
+      <span>Novo por aqui?<span class="redirect" routerLink="/register-user"> Cadastre-se</span></span>
     </div>
   </div>
 </div>

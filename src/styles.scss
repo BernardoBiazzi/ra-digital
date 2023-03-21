@@ -5,3 +5,104 @@ body {
   color: #242424;
   font-family: 'Poppins', sans-serif;
 }
+
+header {
+  display: flex;
+  height: 50px;
+  width: 100%;
+  background-color: #3b3bd1;
+  align-items: center;
+  padding-left: 15px;
+
+  img {
+    width: 30px;
+    margin-right: 15px;
+  }
+
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    color: white;
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  #logout {
+    width: 25px;
+    margin-left: auto;
+    margin-right: 25px;
+  }
+}
+
+.displayTable {
+  background: white;
+  overflow: hidden;
+  padding: 15px;
+  margin: 15px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 4px #00000014;
+
+  h3 {
+    margin: -15px -15px 20px -15px;
+    padding: 11px 15px 10px 15px;
+    background: #3b3bd1;
+    text-align: center;
+    color: white;
+  }
+
+  input.btn,
+  button.btn {
+    width: 100%;
+    color: white;
+    font-size: 15px;
+    padding: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: #3b3bd1;
+    border: solid 1px #3b3bd1;
+  }
+
+  .formGroup {
+    display: flex;
+    justify-content: center;
+  }
+
+  input.formControl {
+    width: -webkit-fill-available;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: solid 1px black;
+  }
+
+  .googleBtn {
+    color: black !important;
+    margin-bottom: 30px !important;
+    background-color: white !important;
+    border: solid 1px black !important;
+    padding: 6px 35px 6px 20px !important;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 10px;
+
+    img {
+      height: 30px;
+    }
+  }
+
+  .redirect {
+    color: #3b3bd1;
+    font-weight: bold;
+  }
+
+  .redirectToLogin,
+  .forgotPassword {
+    text-align: center;
+  }
+}
+
+
