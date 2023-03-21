@@ -15,9 +15,9 @@
       <img [src]="this.user.photoURL" alt="">
     </div>
     <div class="user-info">
-      <input id="name" (keyup)="keyUpName($event)" type="text" class="formControl" [value]="this.user.displayName" #displayName>
+      <input id="name" (keyup)="keyUpName($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.displayName" #displayName>
       <p id="email">{{this.user.email}}</p>
-      <input id="cpf" (keyup)="keyUpCpf($event)" type="text" class="formControl" [value]="this.user.cpf" #cpf>
+      <input id="cpf" (keyup)="keyUpCpf($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.cpf" #cpf>
     </div>
   </div>
 

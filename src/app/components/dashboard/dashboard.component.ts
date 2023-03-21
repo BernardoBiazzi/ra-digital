@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
     if (!this.user.displayName) this.user.displayName = 'Fulano de Tal';
   }
 
-  keyUpCpf(event: any) {
+  keyUpCpf = (event: any) => {
     let inputValue = event.target.value as string;
     const maskedValue = this.maskCpf(inputValue);
     event.target.value = maskedValue;
@@ -45,11 +45,9 @@ export class DashboardComponent implements OnInit {
   maskCpf(cpf: string): string {
     // Remove all non-digit characters from the input string
     const cleaned = cpf.replace(/\D/g, '');
-
     // Apply the CPF mask (###.###.###-##)
     const match = cleaned.match(/^(\d{3})(\d{3})(\d{3})(\d{2})$/);
     if (match) return `${match[1]}.${match[2]}.${match[3]}-${match[4]}`;
-
     // If the input string doesn't match the expected format, return the original string
     return cpf;
   }

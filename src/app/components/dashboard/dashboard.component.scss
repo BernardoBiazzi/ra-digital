@@ -33,9 +33,10 @@
     border-bottom: solid 1px #c7c7c7;
 
     .profile {
+      height: 75px;
       img {
-        width: 96px;
-        height: 96px;
+        width: 75px;
+        height: 75px;
         border-radius: 10px;
         background-color: #dfdfdf;
         box-shadow: inset 2px 2px 4px #0000006b;
@@ -43,6 +44,7 @@
     }
 
     .user-info {
+      height: 75px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -56,14 +58,11 @@
       }
 
       #email {
+        margin: 0;
         font-size: 13px;
-        margin-top: 0;
-        margin-bottom: 3px;
       }
 
       #cpf {
-        border-top: solid 1px #c7c7c7;
-        padding-top: 2px;
         margin: 0;
       }
 
