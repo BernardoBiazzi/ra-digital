@@ -158,6 +158,7 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<any> = this.angularFirestore.doc(`users/${user.uid}`);
     return new Promise<User>((resolve, reject) => {
       userRef.set(user, { merge: true }).then(() => {
+        localStorage.setItem('user', JSON.stringify(user));
         resolve(user);
       }).catch((error) => {
         window.alert(error);
