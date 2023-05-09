@@ -31,7 +31,6 @@ export class AuthService {
     this.angularFireAuth.authState.subscribe((user) => {
       if (!user)  {
         localStorage.setItem('user', 'null');
-        JSON.parse(localStorage.getItem('user')!);
       }
     });
   }

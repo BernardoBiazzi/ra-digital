@@ -1,23 +1,24 @@
 <header>
-  <img id="menu" [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Hamburger_icon_white.svg/1024px-Hamburger_icon_white.svg.png'" alt="">
+  <img id="menu" [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Hamburger_icon_white.svg/1024px-Hamburger_icon_white.svg.png'">
   <p>Carteirinha</p>
-  <img id="logout" (click)="authService.signOut()" [src]="'https://static-00.iconduck.com/assets.00/logout-icon-512x512-2x08s84n.png'" alt="">
+  <img id="logout" (click)="authService.signOut()" [src]="'https://static-00.iconduck.com/assets.00/logout-icon-512x512-2x08s84n.png'">
 </header>
 
 <div class="carteirinha">
 
   <div class="header-moldura">
-    <img [src]="'https://www.eduwonka.com/assets/images/google-white2.png'" alt="">
+    <img id="logo" [src]="'./assets/img/logo.png'">
+    <img id="google-for-education" [src]="'https://www.eduwonka.com/assets/images/google-white2.png'">
   </div>
 
   <div class="dados">
     <div class="profile">
-      <img [src]="this.user.photoURL" alt="">
+      <img [src]="this.user.photoURL">
     </div>
     <div class="user-info">
-      <input id="name" (keyup)="keyUpName($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.displayName" #displayName>
-      <p id="email">{{this.user.email}}</p>
-      <input id="cpf" (keyup)="keyUpCpf($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.cpf" #cpf>
+      <input id="name" #displayName (keyup)="keyUpName($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.displayName">
+      <p id="email">{{this.user.email.split('@')[0] + '@fadba.edu.br'}}</p>
+      <input id="cpf" #cpf (keyup)="keyUpCpf($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.cpf">
     </div>
   </div>
 
@@ -38,15 +39,16 @@
   </div>
 
   <div class="codigo-barras">
-    <img [src]="'https://www.pngall.com/wp-content/uploads/2/Barcode-PNG-Images.png'" alt="">
+    <p id="ra">{{ra}}</p>
+    <img [src]="'https://www.pngall.com/wp-content/uploads/2/Barcode-PNG-Images.png'">
   </div>
 
   <div class="validade">
-    <p>Válido até 31/12/2023</p>
+    <p>Válido até {{validity}}</p>
   </div>
 
   <div class="bottom-moldura">
-    <img [src]="'https://img.freepik.com/premium-photo/abstract-digital-background-network-connection-structure-big-data-futuristic-abstract-wave-3d-rendering_697329-291.jpg'" alt="">
+    <img [src]="'https://img.freepik.com/premium-photo/abstract-digital-background-network-connection-structure-big-data-futuristic-abstract-wave-3d-rendering_697329-291.jpg'">
   </div>
 
 </div>

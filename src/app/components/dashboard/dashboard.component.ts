@@ -9,6 +9,8 @@ import { AuthService, User } from '../../shared/services/auth.service';
 export class DashboardComponent implements OnInit {
 
   public user!: User;
+  public ra: string = '00220180' + Math.floor((Math.random() * 999999999) + 1);
+  public validity: string = '31/12/' + new Date().getFullYear();
 
   constructor(public authService: AuthService) { }
 
