@@ -17,7 +17,7 @@
     </div>
     <div class="user-info">
       <input id="name" #displayName (keyup)="keyUpName($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.displayName">
-      <p id="email">{{this.user.email.split('@')[0] + '@fadba.edu.br'}}</p>
+      <p id="email">{{this.buildEmail()}}</p>
       <input id="cpf" #cpf (keyup)="keyUpCpf($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.cpf">
     </div>
   </div>

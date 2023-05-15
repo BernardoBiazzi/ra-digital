@@ -62,4 +62,17 @@ export class DashboardComponent implements OnInit {
     };
   }
 
+  buildEmail(): string {
+    const nameLenght = this.user.displayName ? this.user.displayName.split(' ').length : 0;
+    const names = this.user.displayName ? this.user.displayName.split(' ') : [];
+    const firstName = names[0]?.toLowerCase();
+    const lastName = names[nameLenght-1]?.toLowerCase();
+
+    if (firstName && lastName && nameLenght > 1) {
+      return firstName + '.' + lastName + '@fadba.edu.br';
+    } else {
+      return this.user.email.split('@')[0] + '@fadba.edu.br';
+    }
+  }
+
 }
