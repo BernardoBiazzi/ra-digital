@@ -13,7 +13,7 @@
 
   <div class="dados">
     <div class="profile">
-      <img [src]="this.user.photoURL">
+      <img [src]="this.user.photoURL || './assets/img/avatar.svg'">
     </div>
     <div class="user-info">
       <input id="name" #displayName (keyup)="keyUpName($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.displayName">
