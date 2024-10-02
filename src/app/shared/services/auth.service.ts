@@ -12,6 +12,7 @@ export interface User {
   displayName?: string;
   photoURL: string;
   emailVerified: boolean;
+  ra?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -117,12 +118,20 @@ export class AuthService {
   setUserData(user: any):Promise<User> {
     const userRef: AngularFirestoreDocument<any> = this.angularFirestore.doc(`users/${user.uid}`);
 
-    const userData: User = {
+    // const userData: User = {
+    //   uid: user.uid,
+    //   email: user.email,
+    //   photoURL: user.photoURL,
+    //   displayName: user.displayName,
+    //   emailVerified: user.emailVerified
+    // };
+
+    const userData: any = {
       uid: user.uid,
       email: user.email,
       photoURL: user.photoURL,
       displayName: user.displayName,
-      emailVerified: user.emailVerified
+      emailVerified: user.emailVerified,
     };
 
     return new Promise<User>((resolve, reject) => {
@@ -157,7 +166,8 @@ export class AuthService {
   updateUserData(user: User): Promise<User> {
     const userRef: AngularFirestoreDocument<any> = this.angularFirestore.doc(`users/${user.uid}`);
     return new Promise<User>((resolve, reject) => {
-      userRef.set(user, { merge: true }).then(() => {
+      userRef.set(user, { merge: true }).then((res) => {
+        console.warn(res);
         localStorage.setItem('user', JSON.stringify(user));
         resolve(user);
       }).catch((error) => {

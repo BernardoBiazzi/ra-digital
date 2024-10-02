@@ -6,14 +6,15 @@
 
 <div class="carteirinha">
 
-  <div class="header-moldura">
+  <div class="header-moldura no-print">
     <img id="logo" [src]="'./assets/img/logo.png'">
     <img id="google-for-education" [src]="'./assets/img/google.png'">
   </div>
 
   <div class="dados">
     <div class="profile">
-      <img [src]="this.user.photoURL || './assets/img/avatar.svg'">
+      <!-- <img [src]="this.user.photoURL || './assets/img/avatar.svg'"> -->
+      <img src="https://i.imgur.com/7J0X47N.jpeg" alt="">
     </div>
     <div class="user-info">
       <input id="name" #displayName (keyup)="keyUpName($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.displayName">
@@ -39,8 +40,10 @@
   </div>
 
   <div class="codigo-barras">
-    <p id="ra">{{ra}}</p>
-    <img [src]="'https://www.pngall.com/wp-content/uploads/2/Barcode-PNG-Images.png'">
+    <!-- <p id="ra">{{ra}}</p>
+    <img [src]="'https://www.pngall.com/wp-content/uploads/2/Barcode-PNG-Images.png'"> -->
+    <input id="ra" (keyup)="keyUpRA($event)" type="text" class="formControl no-print" [value]="this.user.ra" #ra>
+    <img id="ra-barcode" [src]="raBarcode" style="max-height: 92px;"/>
   </div>
 
   <div class="validade">
