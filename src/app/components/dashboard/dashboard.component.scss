@@ -3,6 +3,12 @@
         display: none;
       }
 
+      textarea {
+        border: none;
+        overflow: hidden;
+        resize: none;
+      }
+      
       .carteirinha {
         box-shadow: 2px 2px 4px #00000014;
         background-color: white;
