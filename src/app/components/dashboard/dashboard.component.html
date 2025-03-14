@@ -13,11 +13,11 @@
 
   <div class="dados">
     <div class="profile">
-      <!-- <img [src]="this.user.photoURL || './assets/img/avatar.svg'"> -->
-      <img src="https://i.imgur.com/7J0X47N.jpeg" alt="">
+      <img [src]="this.user.photoURL || './assets/img/avatar.svg'"> 
     </div>
     <div class="user-info">
-      <input id="name" #displayName (keyup)="keyUpName($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.displayName">
+      <!-- <input id="name" #displayName (keyup)="keyUpName($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.displayName"> -->
+      <textarea id="name" #displayName (keyup)="keyUpName($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.displayName" ></textarea>
       <p id="email">{{this.buildEmail()}}</p>
       <input id="cpf" #cpf (keyup)="keyUpCpf($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.cpf">
     </div>
