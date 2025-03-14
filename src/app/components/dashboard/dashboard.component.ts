@@ -4,21 +4,22 @@ import { AuthService, User } from '../../shared/services/auth.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-
   public user!: User;
-  public ra: string = '00220180' + Math.floor((Math.random() * 999999999) + 1);
+  // public ra: string = '00220180' + Math.floor(Math.random() * 999999999 + 1);
+  public ra: string = '00220180';
   public validity: string = '31/12/' + new Date().getFullYear();
-
-  constructor(public authService: AuthService) { }
+  public raBarcode = `https://barcodeapi.org/api/auto/test${this.ra}`;
+  constructor(public authService: AuthService) {}
 
   ngOnInit(): void {
     this.user = this.authService.userData;
     if (!this.user.cpf) this.user.cpf = '000.000.000-00';
     if (!this.user.curso) this.user.curso = 'CLIQUE E DIGITE O NOME';
     if (!this.user.displayName) this.user.displayName = 'Fulano de Tal';
+    this.updateBarcode(this.ra);
   }
 
   keyUpCpf = (event: any) => {
@@ -28,9 +29,23 @@ export class DashboardComponent implements OnInit {
 
     if (maskedValue.length == 14) {
       this.user.cpf = maskedValue;
-      this.authService.updateUserData(this.user)
+      this.authService.updateUserData(this.user);
     }
-  }
+  };
+
+  updateBarcode = (ra: string) => {
+    console.log(ra);
+    let auxRa = ra.padStart(15, '0');
+    this.raBarcode = `https://barcodeapi.org/api/auto/${auxRa}`;
+  };
+
+  keyUpRA = this.debounce((event: any) => {
+    this.user.ra = event.target.value as string;
+    console.warn(this.user.ra);
+    this.updateBarcode(this.user.ra);
+    if (this.user.ra.length <= 1) return;
+    this.authService.updateUserData(this.user);
+  }, 1000);
 
   keyUpCurso = this.debounce((event: any) => {
     this.user.curso = event.target.value.toUpperCase() as string;
@@ -42,7 +57,7 @@ export class DashboardComponent implements OnInit {
     this.user.displayName = event.target.value as string;
     if (this.user.displayName.length <= 1) return;
     this.authService.updateUserData(this.user);
-  }, 1000)
+  }, 1000);
 
   maskCpf(cpf: string): string {
     // Remove all non-digit characters from the input string
@@ -56,17 +71,19 @@ export class DashboardComponent implements OnInit {
 
   debounce<T extends (...args: any[]) => any>(func: T, delay: number) {
     let timeoutId: ReturnType<typeof setTimeout> | undefined;
-    return function(this: unknown, ...args: Parameters<T>) {
+    return function (this: unknown, ...args: Parameters<T>) {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => func.apply(this, args), delay);
     };
   }
 
   buildEmail(): string {
-    const nameLenght = this.user.displayName ? this.user.displayName.split(' ').length : 0;
+    const nameLenght = this.user.displayName
+      ? this.user.displayName.split(' ').length
+      : 0;
     const names = this.user.displayName ? this.user.displayName.split(' ') : [];
     const firstName = names[0]?.toLowerCase();
-    const lastName = names[nameLenght-1]?.toLowerCase();
+    const lastName = names[nameLenght - 1]?.toLowerCase();
 
     if (firstName && lastName && nameLenght > 1) {
       return firstName + '.' + lastName + '@fadba.edu.br';
@@ -74,5 +91,4 @@ export class DashboardComponent implements OnInit {
       return this.user.email.split('@')[0] + '@fadba.edu.br';
     }
   }
-
 }
