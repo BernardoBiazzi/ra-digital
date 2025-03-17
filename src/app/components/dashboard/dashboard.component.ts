@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { AuthService, User } from '../../shared/services/auth.service';
 
 @Component({
@@ -12,7 +13,10 @@ export class DashboardComponent implements OnInit {
   public ra: string = '00220180';
   public validity: string = '31/12/' + new Date().getFullYear();
   public raBarcode = `https://barcodeapi.org/api/auto/test${this.ra}`;
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
     this.user = this.authService.userData;
@@ -37,6 +41,13 @@ export class DashboardComponent implements OnInit {
     console.log(ra);
     let auxRa = ra.padStart(15, '0');
     this.raBarcode = `https://barcodeapi.org/api/auto/${auxRa}`;
+  };
+
+  updateAvatar = (event: any) => {
+    let file = event.target.files[0] ?? null;
+    if (file == null) return;
+    const tempURL = URL.createObjectURL(file);
+    this.user.photoURL = this.sanitizer.bypassSecurityTrustUrl(tempURL) as string;
   };
 
   keyUpRA = this.debounce((event: any) => {

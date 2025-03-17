@@ -13,10 +13,20 @@
 
   <div class="dados">
     <div class="profile">
-      <img [src]="this.user.photoURL || './assets/img/avatar.svg'"> 
+      <label for="avatar-input-file" class="avatar-container">
+        <img [src]="this.user.photoURL || './assets/img/avatar.svg'" class="avatar-img"> 
+
+        <input 
+          id="avatar-input-file" 
+          type="file" 
+          name="avatar-input-file" 
+          style="display: none;"
+        (change)="updateAvatar($event)"
+        />
+      </label>
+
     </div>
     <div class="user-info">
-      <!-- <input id="name" #displayName (keyup)="keyUpName($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.displayName"> -->
       <textarea id="name" #displayName (keyup)="keyUpName($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.displayName" ></textarea>
       <p id="email">{{this.buildEmail()}}</p>
       <input id="cpf" #cpf (keyup)="keyUpCpf($event)" type="text" class="formControl" [placeholder]="this.user.displayName" [value]="this.user.cpf">
@@ -40,8 +50,6 @@
   </div>
 
   <div class="codigo-barras">
-    <!-- <p id="ra">{{ra}}</p>
-    <img [src]="'https://www.pngall.com/wp-content/uploads/2/Barcode-PNG-Images.png'"> -->
     <input id="ra" (keyup)="keyUpRA($event)" type="text" class="formControl no-print" [value]="this.user.ra" #ra>
     <img id="ra-barcode" [src]="raBarcode" style="max-height: 92px;"/>
   </div>
